@@ -22,6 +22,14 @@ public class MathController {
         return convertDouble(numberOne) - convertDouble(numberTwo);
     }
 
+    @RequestMapping(value = "/mult/{numberOne}/{numberTwo}")
+    private Double mult(@PathVariable String numberOne, @PathVariable String numberTwo) {
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new UnsupportedMathOperationException("Please set a numerics values");
+        }
+        return convertDouble(numberOne) * convertDouble(numberTwo);
+    }
+
     private Double convertDouble(String number){
         if (number == null){
             return 0D;
