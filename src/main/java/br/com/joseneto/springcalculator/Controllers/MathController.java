@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 public class MathController {
 
     @RequestMapping(value ="/sum/{numberOne}/{numberTwo}", method= RequestMethod.GET)
-    public Double sum(@PathVariable String numberOne, @PathVariable String numberTwo) throws Exception {
+    public Double sum(@PathVariable String numberOne, @PathVariable String numberTwo) throws UnsupportedMathOperationException  {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please set a numerics values");
         }
@@ -15,7 +15,7 @@ public class MathController {
     }
 
     @RequestMapping(value ="/sub/{numberOne}/{numberTwo}", method=RequestMethod.GET)
-    private Double subtraction(@PathVariable String numberOne, @PathVariable String numberTwo) throws Exception {
+    private Double subtraction(@PathVariable String numberOne, @PathVariable String numberTwo) throws UnsupportedMathOperationException {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please set a numerics values");
         }
@@ -23,7 +23,7 @@ public class MathController {
     }
 
     @RequestMapping(value = "/mult/{numberOne}/{numberTwo}")
-    private Double mult(@PathVariable String numberOne, @PathVariable String numberTwo) {
+    private Double mult(@PathVariable String numberOne, @PathVariable String numberTwo) throws UnsupportedMathOperationException  {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please set a numerics values");
         }
@@ -31,7 +31,7 @@ public class MathController {
     }
 
     @RequestMapping(value = "/div/{numberOne}/{numberTwo}", method= RequestMethod.GET)
-    private Double div(@PathVariable String numberOne, @PathVariable String numberTwo) throws Exception {
+    private Double div(@PathVariable String numberOne, @PathVariable String numberTwo) throws UnsupportedMathOperationException  {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please set a numerics values");
         }
