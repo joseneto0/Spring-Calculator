@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 public class MathController {
 
     @RequestMapping(value ="/sum/{numberOne}/{numberTwo}", method= RequestMethod.GET)
-    public Double sum(@PathVariable String numberOne, @PathVariable String numberTwo) {
+    public Double sum(@PathVariable String numberOne, @PathVariable String numberTwo) throws Exception {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please set a numerics values");
         }
@@ -28,6 +28,17 @@ public class MathController {
             throw new UnsupportedMathOperationException("Please set a numerics values");
         }
         return convertDouble(numberOne) * convertDouble(numberTwo);
+    }
+
+    @RequestMapping(value = "/div/{numberOne}/{numberTwo}", method= RequestMethod.GET)
+    private Double div(@PathVariable String numberOne, @PathVariable String numberTwo) throws Exception {
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new UnsupportedMathOperationException("Please set a numerics values");
+        }
+        if (convertDouble(numberTwo) == 0D){
+            throw new UnsupportedMathOperationException("Division by zero");
+        }
+        return convertDouble(numberOne) / convertDouble(numberTwo);
     }
 
     private Double convertDouble(String number){
