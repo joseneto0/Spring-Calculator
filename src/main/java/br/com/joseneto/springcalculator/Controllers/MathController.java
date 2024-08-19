@@ -14,6 +14,14 @@ public class MathController {
         return convertDouble(numberOne) + convertDouble(numberTwo);
     }
 
+    @RequestMapping(value ="/sub/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+    private Double subtraction(@PathVariable String numberOne, @PathVariable String numberTwo) throws Exception {
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new UnsupportedMathOperationException("Please set a numerics values");
+        }
+        return convertDouble(numberOne) - convertDouble(numberTwo);
+    }
+
     private Double convertDouble(String number){
         if (number == null){
             return 0D;
