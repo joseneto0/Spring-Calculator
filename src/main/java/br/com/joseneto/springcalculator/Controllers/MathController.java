@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 public class MathController {
 
     @RequestMapping(value ="/sum/{numberOne}/{numberTwo}", method= RequestMethod.GET)
-    public Double sum(@PathVariable String numberOne, @PathVariable String numberTwo) throws Exception {
+    public Double sum(@PathVariable String numberOne, @PathVariable String numberTwo) {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please set a numerics values");
         }
